@@ -13,9 +13,16 @@ df = pd.DataFrame(iris.data, columns=iris.feature_names)
 df['target'] = iris.target
 
 # 目標値を数字から花の名前に変更
-df.loc[df['target'] == 0, 'target'] = 'setosa'
-df.loc[df['target'] == 1, 'target'] = 'varsicolor'
-df.loc[df['target'] == 2, 'target'] = 'virginica'
+df['target'] = df['target'].map({
+    0: 'setosa',
+    1: 'versicolor',
+    2: 'virginica'
+})
+
+# df.loc[df['target'] == 0, 'target'] = 'setosa'
+# df.loc[df['target'] == 1, 'target'] = 'versicolor'
+# df.loc[df['target'] == 2, 'target'] = 'virginica'
+
 
 # 予測モデルの構築
 x = iris.data[:, [0, 2]]
